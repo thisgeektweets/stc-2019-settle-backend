@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 7077;
 require('dotenv').config();
 
-const hello = require('./server/routes/hello.js');
+const hello = require('./server/routes/messages.js');
 
 app.use(bodyParser({ limit: '500mb' }));
 app.use('/api', hello);
