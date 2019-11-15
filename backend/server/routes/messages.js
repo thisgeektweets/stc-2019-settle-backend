@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
   const {
     token,
   } = req.body;
-  knownUsers.add({ token });
+  knownUsers.add(token);
   res.json({ ok: true });
 });
 
@@ -29,7 +29,7 @@ router.post('/push', async (req, res) => {
   console.log(knownUsers.length);
   console.log(JSON.stringify([...knownUsers]));
   const batch = [...knownUsers].map((u) => ({
-    to: u.token,
+    to: u,
     title: `${req.body.company} has a new offer`,
     body: req.body.body,
     data: { code: req.body.code },
