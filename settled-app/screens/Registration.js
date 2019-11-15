@@ -12,9 +12,48 @@ import {
   TextInput,
 } from 'react-native';
 
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
 import { MonoText } from '../components/StyledText';
 
+const API = 'https://polar-earth-61926.herokuapp.com/api';
+
 export default class Registration extends React.Component {
+  async componentDidMount() {
+    this.registerForPushNotificationsAsync();
+  }
+
+  async registerForPushNotificationsAsync() {
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Permissions.getAsync(
+        Permissions.NOTIFICATIONS,
+      );
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Permissions.askAsync(
+          Permissions.NOTIFICATIONS,
+        );
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      const token = await Notifications.getExpoPushTokenAsync();
+      const body = { token };
+      return fetch(`${API}/register`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+    }
+    alert('Must use physical device for Push Notifications');
+  }
+
   render() {
     return (
       <View style={styles.container}>

@@ -14,13 +14,11 @@ export default class PushScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expoPushToken: 'AAAAdPhKkwY:APA91bHkJ66eO8fykRafhn_S9Ml3ZRwY4JpS1SleVvUahCITwTrtpSX2lgTDEryK6SHCBujq4benKvSyhiPZXqA2ART-sW0058so7UAHlpOYlAEjA022wAiT_u5wPwM95kOSRtA8RVuJ',
       notification: {},
     };
   }
 
   async componentDidMount(){
-    this.registerForPushNotificationsAsync();
     // Handle notifications that are received or selected while the app
     // is open. If the app was closed and then opened by tapping the
     // notification (rather than just tapping the app icon to open it),
@@ -33,38 +31,6 @@ export default class PushScreen extends React.Component {
 
   _handleNotification = (notification) => {
     this.setState({ notification });
-  }
-
-  registerForPushNotificationsAsync = async () => {
-    if (Constants.isDevice) {
-      const { status: existingStatus } = await Permissions.getAsync(
-        Permissions.NOTIFICATIONS,
-      );
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Permissions.askAsync(
-          Permissions.NOTIFICATIONS,
-        );
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
-      }
-      const token = await Notifications.getExpoPushTokenAsync();
-      const body = { token }
-      return fetch(`${API}/register`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      });
-
-    } else {
-      alert('Must use physical device for Push Notifications');
-    }
   }
 
   // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
