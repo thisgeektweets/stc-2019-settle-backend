@@ -12,6 +12,7 @@ const createMessages = (users, message) => users.map((u) => ({
   to: u.token,
   title: `${message.company} has a new offer`,
   body: message.body,
+  data: { code: message.code },
   sound: 'default',
 }));
 
