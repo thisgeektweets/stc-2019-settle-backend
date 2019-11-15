@@ -1,198 +1,146 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, { Component } from 'react';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 
-import { MonoText } from '../components/StyledText';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
-export default function HomeScreen() {
+import { Header, Card, Button } from 'react-native-elements';
+
+import Constants from 'expo-constants';
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    image: require('../assets/images/figbar.jpeg'),
+    business: 'Figbar',
+    dealPercent: '10%',
+    deal: 'off pastries',
+    expiry: '17/11/19 - 15:30 to 18:00',
+    location: 'Norwich'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    image: require('../assets/images/strangers.jpg'),
+    business: 'Strangers',
+    dealPercent: '20%',
+    deal: 'off any coffee',
+    expiry: '18/11/19 - 11:00 to 14:00',
+    location: 'Norwich'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    image: require('../assets/images/cafepure.jpeg'),
+    business: 'Pure Cafe',
+    dealPercent: '5%',
+    deal: 'off your first order',
+    expiry: '17/11/19 - 11:00 to 21:00',
+    location: 'Norwich'
+  },
+];
+
+function Item({ business, image, dealPercent, deal, expiry, location, navigate}) {
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
+    <TouchableOpacity onPress={() => navigate('QRCode', {})}>
+      <Card image={image} style={styles.item} containerStyle={styles.item}>
+        <Text style={styles.title}>{business}</Text>
+        <View style={styles.dealFloat}>
+          <Text style={styles.dealPercent}>{dealPercent}</Text>
+          <Text style={styles.deal}>{deal}</Text>
         </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
-    </View>
+        <Text style={styles.expiry}>Expires: {expiry}</Text>
+        <Text style={styles.location}>{location}</Text>
+      </Card>
+    </TouchableOpacity>
   );
 }
 
-HomeScreen.navigationOptions = {
-  header: null,
-};
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
+export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    const { navigate } = this.props.navigation;
     return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={DATA} 
+          renderItem={({ item }) => <Item  navigate={navigate} business={item.business} image={item.image} dealPercent={item.dealPercent} deal={item.deal} location={item.location} expiry={item.expiry} />}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
     );
   }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
-  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
+    marginTop: Constants.statusBarHeight,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 10,
+    backgroundColor: '#ffffff', 
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  item: {
+    borderRadius: 20,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 5,
+    marginVertical: 8,
+    marginHorizontal: 16,
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  dealFloat: {
+    backgroundColor: '#41B6A3',
+    position: "absolute",
+    right: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    color: '#18365B',
+    fontSize: 24,
+    fontWeight: "bold",
+    borderRadius: 10,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
+  title: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    color: '#18365B',
+    fontSize: 24,
+    fontWeight: "bold",
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+  dealPercent: {
+    paddingTop: 20,
+    paddingBottom: 5,
+    color: '#18365B',
+    fontSize: 24,
+    fontWeight: 'bold'
   },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
+  deal: {
+    paddingTop: 20,
+    paddingBottom: 5,
+    color: '#18365B',
+    fontSize: 18
   },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
+  expiry: {
+    paddingTop: 5,
+    paddingBottom: 10,
+    color: '#41B6A3',
+    fontSize: 12
   },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  location: {
+    paddingBottom: 10,
+    color: '#777777',
+    fontSize: 12
+  }
 });
+
+
+HomeScreen.navigationOptions = {
+  header: null,
+};
+
+
