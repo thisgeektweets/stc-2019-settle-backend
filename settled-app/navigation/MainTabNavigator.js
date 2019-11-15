@@ -7,6 +7,10 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Registration from '../screens/Registration';
+import PushScreen from '../screens/PushScreen';
+import BarCodeScannerScreen from '../screens/BarCodeScannerScreen';
+import RedeemScreen from '../screens/RedeemScreen';
+import ModalScreen from '../screens/ModalScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -17,8 +21,9 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     QRCode: SettingsScreen,
+    Scan: BarCodeScannerScreen,
   },
-  config
+  config,
 );
 
 HomeStack.navigationOptions = {
@@ -39,9 +44,9 @@ HomeStack.path = '';
 
 const MapStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Links: RedeemScreen,
   },
-  config
+  config,
 );
 
 MapStack.navigationOptions = {
@@ -57,7 +62,7 @@ const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
   },
-  config
+  config,
 );
 
 SettingsStack.navigationOptions = {
