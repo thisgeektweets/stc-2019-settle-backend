@@ -19,14 +19,14 @@ export default class MyCards extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.welcomeImage}
-          source={require('./img/monzo.png')}
-        />
         <Text style={styles.blueText}>Your Cards...</Text>
         <View>
           <Text style={styles.white}></Text>
         </View>
+        <Image
+          style={styles.welcomeImage}
+          source={require('./img/monzo.png')}
+        />
         <Button
             title='Settings'
             onPress={() => this.props.navigation.navigate('Settings', {})}
@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
   },
   blueText: {
     color: '#18365B',
-    paddingLeft: 10
+    padding: 20
   },
 });
