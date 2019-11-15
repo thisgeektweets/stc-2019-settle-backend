@@ -34,7 +34,7 @@ const DATA = [
     image: require('../assets/images/cafepure.jpeg'),
     business: 'Pure Cafe',
     dealPercent: '5%',
-    deal: 'off your first order',
+    deal: 'off traybakes',
     expiry: '17/11/19 - 11:00 to 21:00',
     location: 'Norwich',
   },
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   dealPercent: {
-    paddingTop: 20,
+    paddingTop: 5,
     color: '#ffffff',
     fontSize: 40,
     fontWeight: 'bold',
