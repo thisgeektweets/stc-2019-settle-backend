@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import RedeemScreen from '../screens/RedeemScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -14,9 +15,9 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: RedeemScreen,
   },
-  config
+  config,
 );
 
 HomeStack.navigationOptions = {
@@ -39,7 +40,7 @@ const LinksStack = createStackNavigator(
   {
     Links: LinksScreen,
   },
-  config
+  config,
 );
 
 LinksStack.navigationOptions = {
@@ -55,7 +56,7 @@ const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
   },
-  config
+  config,
 );
 
 SettingsStack.navigationOptions = {
