@@ -50,7 +50,7 @@ export default class Registration extends React.Component {
         />
         <Button
           title="Sign Up"
-          onPress={() => this.props.navigation.navigate('Main')}
+          onPress={() => this.props.navigation.navigate('Settings')}
           color="#41B6A3"
         />
         <View>
@@ -58,7 +58,7 @@ export default class Registration extends React.Component {
         </View>
         <Button
           title="Sign in with Google"
-          onPress={() => this.props.navigation.navigate('Main')}
+          onPress={() => this.props.navigation.navigate('Settings')}
             // onPress={login}
           color="#18365B"
         />
@@ -67,7 +67,7 @@ export default class Registration extends React.Component {
         </View>
         <Button
           title="Sign in with Facebook"
-          onPress={() => this.props.navigation.navigate('Main')}
+          onPress={() => this.props.navigation.navigate('Settings')}
             // onPress={login}
           color="#41B6A3"
         />
