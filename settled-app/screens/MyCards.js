@@ -27,6 +27,12 @@ export default class MyCards extends React.Component {
         <View>
           <Text style={styles.white}></Text>
         </View>
+        <Button
+            title='Settings'
+            onPress={() => this.props.navigation.navigate('Settings', {})}
+            // onPress={login}
+            color='#41B6A3'a
+          />
       </View>
     )
   }

@@ -27,14 +27,14 @@ export default class Settings extends React.Component {
         <Text></Text>
           <Button
             title='Add a card'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            onPress={() => this.props.navigation.navigate('AddCard', {})}
             // onPress={login}
             color='#41B6A3'a
           />
         <Text></Text>
           <Button
             title='My Cards'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            onPress={() => this.props.navigation.navigate('MyCards', {})}
             // onPress={login}
             color='#41B6A3'a
           />
