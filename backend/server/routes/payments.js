@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.get('/transaction', (req, res) => {
+router.post('/transaction', (req, res) => {
   console.log(JSON.stringify(req.body));
   return res.json({ ok: true });
 });
