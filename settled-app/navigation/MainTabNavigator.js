@@ -17,6 +17,8 @@ const config = Platform.select({
   default: {},
 });
 
+// DefaultHome -> Login
+// Login -> Settings
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -33,7 +35,7 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-search`
+          ? 'ios-search'
           : 'md-search'
       }
     />
@@ -42,6 +44,7 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
+// List of Companies
 const MapStack = createStackNavigator(
   {
     Links: RedeemScreen,
