@@ -52,8 +52,7 @@ function Item({
           <Text style={styles.deal}>{deal}</Text>
         </View>
         <Text style={styles.expiry}>
-Expires:
-          {expiry}
+          Expires: {expiry}
         </Text>
         <Text style={styles.location}>{location}</Text>
       </Card>
@@ -106,13 +105,13 @@ const styles = StyleSheet.create({
   dealFloat: {
     backgroundColor: '#41B6A3',
     position: 'absolute',
-    right: 10,
+    right: 0,
     paddingTop: 5,
     paddingBottom: 5,
-    backgroundColor: '#18365B',
-    // fontSize: 24,
-    // fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: 'bold',
     borderRadius: 10,
+    width: 120
   },
   title: {
     paddingTop: 5,
@@ -125,14 +124,17 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 5,
     color: '#18365B',
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
+    textAlign: "center",
   },
   deal: {
-    paddingTop: 20,
+    paddingTop: 10,
     paddingBottom: 5,
     color: '#18365B',
-    fontSize: 18,
+    fontSize: 14,
+    textAlign: "center",
+    marginHorizontal: 5
   },
   expiry: {
     paddingTop: 5,
