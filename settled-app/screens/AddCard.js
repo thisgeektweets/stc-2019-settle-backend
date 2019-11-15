@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+
 import {
   Image,
   Platform,
@@ -15,7 +16,7 @@ import {
 import { MonoText } from '../components/StyledText';
 
 
-export default class Settings extends React.Component {
+export default class Card1 extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -23,18 +24,52 @@ export default class Settings extends React.Component {
           style={styles.welcomeImage}
           source={require('./img/pendent-logo.png')}
         />
-        <Text style={styles.blueText}>My Account...</Text>
-        <Text></Text>
+        <Text style={styles.blueText}>Please enter your card details...</Text>
+        <TextInput
+          style={styles.textBox}
+          placeholder='Card Number'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='CVC'
+          secureTextEntry={true}
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='Name on Card'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='Address'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <Button
+          title='Submit'
+          onPress={() => this.props.navigation.navigate('HomeScreen', {})}
+          color='#41B6A3'
+        />
+      <View>
+        <Text style={styles.white}></Text>
+      </View>
           <Button
-            title='Add a card'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            title='Sign in with Google'
+            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
             // onPress={login}
-            color='#41B6A3'a
+            color='#18365B'
           />
-        <Text></Text>
+        <View>
+          <Text style={styles.white}></Text>
+        </View>
           <Button
-            title='My Cards'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            title='Sign in with Facebook'
+            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
             // onPress={login}
             color='#41B6A3'a
           />
@@ -43,7 +78,7 @@ export default class Settings extends React.Component {
   }
 }
 
-Settings.navigationOptions = {
+Card1.navigationOptions = {
   header: null,
 };
 

@@ -15,7 +15,7 @@ import {
 import { MonoText } from '../components/StyledText';
 
 
-export default class Settings extends React.Component {
+export default class Registration extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -23,18 +23,52 @@ export default class Settings extends React.Component {
           style={styles.welcomeImage}
           source={require('./img/pendent-logo.png')}
         />
-        <Text style={styles.blueText}>My Account...</Text>
-        <Text></Text>
+        <Text style={styles.blueText}>Please register below...</Text>
+        <TextInput
+          style={styles.textBox}
+          placeholder='Username'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='Password'
+          secureTextEntry={true}
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='Email'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <TextInput
+          style={styles.textBox}
+          placeholder='Phone Number'
+          autoCapitalize="none"
+          placeholderTextColor='grey'
+        />
+        <Button
+          title='Sign Up'
+          onPress={() => this.props.navigation.navigate('HomeScreen', {})}
+          color='#41B6A3'
+        />
+      <View>
+        <Text style={styles.white}></Text>
+      </View>
           <Button
-            title='Add a card'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            title='Sign in with Google'
+            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
             // onPress={login}
-            color='#41B6A3'a
+            color='#18365B'
           />
-        <Text></Text>
+        <View>
+          <Text style={styles.white}></Text>
+        </View>
           <Button
-            title='My Cards'
-            onPress={() => this.props.navigation.navigate('Card', {})}
+            title='Sign in with Facebook'
+            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
             // onPress={login}
             color='#41B6A3'a
           />
@@ -43,7 +77,7 @@ export default class Settings extends React.Component {
   }
 }
 
-Settings.navigationOptions = {
+Registration.navigationOptions = {
   header: null,
 };
 

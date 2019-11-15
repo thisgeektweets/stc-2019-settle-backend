@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import Registration from '../screens/Registration';
 import PushScreen from '../screens/PushScreen';
 import BarCodeScannerScreen from '../screens/BarCodeScannerScreen';
 import RedeemScreen from '../screens/RedeemScreen';
@@ -18,7 +19,8 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: PushScreen,
+    Home: HomeScreen,
+    QRCode: SettingsScreen,
     Scan: BarCodeScannerScreen,
   },
   config,
@@ -31,8 +33,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-search`
+          : 'md-search'
       }
     />
   ),
@@ -40,21 +42,21 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const MapStack = createStackNavigator(
   {
     Links: RedeemScreen,
   },
   config,
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-map' : 'ios-map'} />
   ),
 };
 
-LinksStack.path = '';
+MapStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -74,7 +76,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  MapStack,
   SettingsStack,
 });
 

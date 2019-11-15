@@ -15,7 +15,7 @@ import {
 import { MonoText } from '../components/StyledText';
 
 
-export default class Settings extends React.Component {
+export default class MyCards extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -23,27 +23,20 @@ export default class Settings extends React.Component {
           style={styles.welcomeImage}
           source={require('./img/pendent-logo.png')}
         />
-        <Text style={styles.blueText}>My Account...</Text>
-        <Text></Text>
-          <Button
-            title='Add a card'
-            onPress={() => this.props.navigation.navigate('Card', {})}
-            // onPress={login}
-            color='#41B6A3'a
-          />
-        <Text></Text>
-          <Button
-            title='My Cards'
-            onPress={() => this.props.navigation.navigate('Card', {})}
-            // onPress={login}
-            color='#41B6A3'a
-          />
+        <Text style={styles.blueText}>Your Cards...</Text>
+      <View>
+        <Text style={styles.white}></Text>
+      </View>
+      <Image
+          // style={styles.welcomeImage}
+          source={require('./img/.png')}
+        />
         </View>
     )
   }
 }
 
-Settings.navigationOptions = {
+MyCards.navigationOptions = {
   header: null,
 };
 
