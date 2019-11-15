@@ -6,7 +6,10 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import PushScreen from '../screens/PushScreen';
+import BarCodeScannerScreen from '../screens/BarCodeScannerScreen';
 import RedeemScreen from '../screens/RedeemScreen';
+import ModalScreen from '../screens/ModalScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -15,7 +18,8 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: RedeemScreen,
+    Home: PushScreen,
+    Scan: BarCodeScannerScreen,
   },
   config,
 );
@@ -38,7 +42,7 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Links: RedeemScreen,
   },
   config,
 );

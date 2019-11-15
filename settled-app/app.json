@@ -1,7 +1,8 @@
 {
   "expo": {
     "android": {
-      "package": "com.settled.app"
+      "package": "com.settled.app",
+       "googleServicesFile": "./google-services.json"
     },
     "name": "Settled",
     "slug": "settled-app",
