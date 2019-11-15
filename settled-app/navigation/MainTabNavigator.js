@@ -47,21 +47,21 @@ HomeStack.navigationOptions = {
 HomeStack.path = '';
 
 // List of Companies
-const MapStack = createStackNavigator(
+const MyOffers = createStackNavigator(
   {
     Links: RedeemScreen,
   },
   config,
 );
 
-MapStack.navigationOptions = {
-  tabBarLabel: 'Map',
+MyOffers.navigationOptions = {
+  tabBarLabel: 'MyOffers',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-map' : 'ios-map'} />
   ),
 };
 
-MapStack.path = '';
+MyOffers.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -79,12 +79,27 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-SettingsStack.path = '';
+const BizStack = createStackNavigator(
+  {
+    Notification: PushScreen,
+  },
+  config,
+);
+
+BizStack.navigationOptions = {
+  tabBarLabel: 'Business',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-business' : 'md-business'} />
+  ),
+};
+
+BizStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  MapStack,
+  MyOffers,
   SettingsStack,
+  BizStack,
 });
 
 tabNavigator.path = '';
