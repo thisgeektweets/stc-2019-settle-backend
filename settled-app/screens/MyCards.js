@@ -21,17 +21,13 @@ export default class MyCards extends React.Component {
       <View style={styles.container}>
         <Image
           style={styles.welcomeImage}
-          source={require('./img/pendent-logo.png')}
+          source={require('./img/monzo.png')}
         />
         <Text style={styles.blueText}>Your Cards...</Text>
-      <View>
-        <Text style={styles.white}></Text>
-      </View>
-      <Image
-          // style={styles.welcomeImage}
-          source={require('./img/.png')}
-        />
+        <View>
+          <Text style={styles.white}></Text>
         </View>
+      </View>
     )
   }
 }

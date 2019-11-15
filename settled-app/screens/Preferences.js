@@ -1,6 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-
 import {
   Image,
   Platform,
@@ -16,51 +15,23 @@ import {
 import { MonoText } from '../components/StyledText';
 
 
-export default class Card1 extends React.Component {
+export default class Preferences extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.welcomeImage}
-          source={require('./img/pendent-logo.png')}
-        />
-        <Text style={styles.blueText}>Please enter your card details...</Text>
-        <TextInput
-          style={styles.textBox}
-          placeholder='Card Number'
-          autoCapitalize="none"
-          placeholderTextColor='grey'
-        />
-        <TextInput
-          style={styles.textBox}
-          placeholder='CVC'
-          secureTextEntry={true}
-          autoCapitalize="none"
-          placeholderTextColor='grey'
-        />
-        <TextInput
-          style={styles.textBox}
-          placeholder='Name on Card'
-          autoCapitalize="none"
-          placeholderTextColor='grey'
-        />
-        <TextInput
-          style={styles.textBox}
-          placeholder='Address'
-          autoCapitalize="none"
-          placeholderTextColor='grey'
-        />
-        <Button
-          title='Submit'
-          onPress={() => this.props.navigation.navigate('Settings', {})}
-          color='#41B6A3'
-        />
-    </View>
+          <Text>Preferences</Text>
+          <Button
+            title='OK'
+            onPress={() => this.props.navigation.navigate('Settings', {})}
+            // onPress={login}
+            color='#18365B'
+          />
+        </View>
     )
   }
 }
 
-Card1.navigationOptions = {
+MyCards.navigationOptions = {
   header: null,
 };
 

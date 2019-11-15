@@ -11,6 +11,8 @@ import PushScreen from '../screens/PushScreen';
 import BarCodeScannerScreen from '../screens/BarCodeScannerScreen';
 import RedeemScreen from '../screens/RedeemScreen';
 import ModalScreen from '../screens/ModalScreen';
+import AddCard from '../screens/AddCard.js';
+import MyCards from '../screens/MyCards.js';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -21,8 +23,9 @@ const config = Platform.select({
 // Login -> Settings
 const HomeStack = createStackNavigator(
   {
+    Registration: Registration,
     Home: HomeScreen,
-    QRCode: SettingsScreen,
+    QRCode: RedeemScreen,
     Scan: BarCodeScannerScreen,
   },
   config,
@@ -64,6 +67,8 @@ MapStack.path = '';
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
+    AddCard: AddCard,
+    MyCards: MyCards
   },
   config,
 );

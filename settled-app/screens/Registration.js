@@ -16,7 +16,19 @@ import { MonoText } from '../components/StyledText';
 
 
 export default class Registration extends React.Component {
+  state = {
+    registered: false
+  }
+
+  _register = () => {
+    this.setState({ registered: true  })
+    this.props.navigation.navigate('Settings', {})
+  }
+
   render() {
+    if(this.state.registered) {
+      this.props.navigation.navigate('Home', {})
+    }
     return (
       <View style={styles.container}>
         <Image
@@ -51,7 +63,7 @@ export default class Registration extends React.Component {
         />
         <Button
           title='Sign Up'
-          onPress={() => this.props.navigation.navigate('HomeScreen', {})}
+          onPress={this._register}
           color='#41B6A3'
         />
       <View>
@@ -59,7 +71,7 @@ export default class Registration extends React.Component {
       </View>
           <Button
             title='Sign in with Google'
-            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
+            onPress={this._register}
             // onPress={login}
             color='#18365B'
           />
@@ -68,9 +80,9 @@ export default class Registration extends React.Component {
         </View>
           <Button
             title='Sign in with Facebook'
-            onPress={() => this.props.navigation.navigate('HomeScreen', {})}
+            onPress={this._register}
             // onPress={login}
-            color='#41B6A3'a
+            color='#41B6A3'
           />
         </View>
     )
