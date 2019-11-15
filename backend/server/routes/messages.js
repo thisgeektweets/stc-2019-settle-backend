@@ -8,6 +8,8 @@ router.use(express.json());
 
 const knownUsers = new Set();
 
+const ignoreUser = 'ExponentPushToken[j2A4CMB7f7Z6grJrokBKHB]';
+
 // const createMessages = (users, message) => users.map((u) => ({
 //   to: u.token,
 //   title: `${message.company} has a new offer`,
@@ -26,9 +28,8 @@ router.post('/register', (req, res) => {
 
 const tickets = [];
 router.post('/push', async (req, res) => {
-  console.log(knownUsers.length);
-  console.log(JSON.stringify([...knownUsers]));
-  const batch = [...knownUsers].map((u) => ({
+  const users = [...knownUsers].filter((x) => x !== ignoreUser);
+  const batch = users.map((u) => ({
     to: u,
     title: `${req.body.company} has a new offer`,
     body: req.body.body,
