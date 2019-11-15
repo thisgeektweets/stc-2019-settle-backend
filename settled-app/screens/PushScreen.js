@@ -8,25 +8,73 @@ import Constants from 'expo-constants';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+const API = 'https://polar-earth-61926.herokuapp.com/api'
+
 export default class PushScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expoPushToken: '',
+      expoPushToken: 'AAAAdPhKkwY:APA91bHkJ66eO8fykRafhn_S9Ml3ZRwY4JpS1SleVvUahCITwTrtpSX2lgTDEryK6SHCBujq4benKvSyhiPZXqA2ART-sW0058so7UAHlpOYlAEjA022wAiT_u5wPwM95kOSRtA8RVuJ',
       notification: {},
     };
+  }
+
+  async componentDidMount(){
+    this.registerForPushNotificationsAsync();
+    // Handle notifications that are received or selected while the app
+    // is open. If the app was closed and then opened by tapping the
+    // notification (rather than just tapping the app icon to open it),
+    // this function will fire on the next tick after the app starts
+    // with the notification data.
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification,
+    );
+  }
+
+  _handleNotification = (notification) => {
+    this.setState({ notification });
+  }
+
+  registerForPushNotificationsAsync = async () => {
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Permissions.getAsync(
+        Permissions.NOTIFICATIONS,
+      );
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Permissions.askAsync(
+          Permissions.NOTIFICATIONS,
+        );
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      const token = await Notifications.getExpoPushTokenAsync();
+      const body = { token }
+      return fetch(`${API}/register`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+    } else {
+      alert('Must use physical device for Push Notifications');
+    }
   }
 
   // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
   sendPushNotification = async () => {
     const message = {
-      to: this.state.expoPushToken,
-      sound: 'default',
-      title: 'New Deal For Figbar',
+      company: 'Figbar',
+      code: 'FIBGAR10',
       body: '10% Off for pastries',
-      data: { data: 'FIBGAR10' },
     };
-    const response = await fetch('https://exp.host/--/api/v2/push/send', {
+    const response = await fetch(`${API}/push`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -43,6 +91,10 @@ export default class PushScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const code = this.props.navigation.getParam('code', 'UNSET');
     const scanned = this.props.navigation.getParam('scanned', false);
+    if (this.state.notification.data) {
+      let foundCode = this.state.notification.data.code
+      navigate('Links', { code: foundCode })
+    }
     return (
       <View
         style={{
@@ -52,10 +104,6 @@ export default class PushScreen extends React.Component {
         }}
       >
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text>
-            Origin:
-            {this.state.notification.origin}
-          </Text>
           {scanned ?
             <Text>
               CODE:
