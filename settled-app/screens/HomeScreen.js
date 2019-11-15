@@ -148,6 +148,9 @@ const styles = StyleSheet.create({
     color: '#777777',
     fontSize: 12,
   },
+  image: {
+    borderRadius: 10,
+  },
 });
 
 
