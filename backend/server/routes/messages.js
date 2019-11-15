@@ -8,13 +8,13 @@ router.use(express.json());
 
 const knownUsers = new Set();
 
-const createMessages = (users, message) => users.map((u) => ({
-  to: u.token,
-  title: `${message.company} has a new offer`,
-  body: message.body,
-  data: { code: message.code },
-  sound: 'default',
-}));
+// const createMessages = (users, message) => users.map((u) => ({
+//   to: u.token,
+//   title: `${message.company} has a new offer`,
+//   body: message.body,
+//   data: { code: message.code },
+//   sound: 'default',
+// }));
 
 router.post('/register', (req, res) => {
   const {
@@ -26,7 +26,13 @@ router.post('/register', (req, res) => {
 
 const tickets = [];
 router.post('/push', async (req, res) => {
-  const batch = createMessages(knownUsers, req.body);
+  const batch = knownUsers.map((u) => ({
+    to: u.token,
+    title: `${req.body.company} has a new offer`,
+    body: req.body.body,
+    data: { code: req.body.code },
+    sound: 'default',
+  }));
   const chunks = expo.chunkPushNotifications(batch);
   // time, which nicely spreads the load out over time:
   for (const chunk of chunks) {
