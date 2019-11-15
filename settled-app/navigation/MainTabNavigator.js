@@ -15,7 +15,8 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: Registration,
+    Home: HomeScreen,
+    QRCode: SettingsScreen,
   },
   config
 );
@@ -27,8 +28,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-search`
+          : 'md-search'
       }
     />
   ),
@@ -36,21 +37,21 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const MapStack = createStackNavigator(
   {
     Links: LinksScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-map' : 'ios-map'} />
   ),
 };
 
-LinksStack.path = '';
+MapStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -70,7 +71,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  MapStack,
   SettingsStack,
 });
 
