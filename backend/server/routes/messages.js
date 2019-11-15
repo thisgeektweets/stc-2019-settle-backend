@@ -26,6 +26,8 @@ router.post('/register', (req, res) => {
 
 const tickets = [];
 router.post('/push', async (req, res) => {
+  console.log(knownUsers.length);
+  console.log(JSON.stringify([...knownUsers]));
   const batch = [...knownUsers].map((u) => ({
     to: u.token,
     title: `${req.body.company} has a new offer`,
