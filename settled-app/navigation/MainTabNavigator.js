@@ -23,7 +23,6 @@ const config = Platform.select({
 // Login -> Settings
 const HomeStack = createStackNavigator(
   {
-    Registration: Registration,
     Home: HomeScreen,
     QRCode: RedeemScreen,
     Scan: BarCodeScannerScreen,
@@ -67,8 +66,8 @@ MapStack.path = '';
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
-    AddCard: AddCard,
-    MyCards: MyCards
+    AddCard,
+    MyCards,
   },
   config,
 );

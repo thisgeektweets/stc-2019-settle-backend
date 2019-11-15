@@ -9,34 +9,12 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput
+  TextInput,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
-
 export default class Registration extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      registered: false
-    }
-  }
-
-  componentDidMount(){
-    if(this.state.registered) {
-      this.props.navigation.navigate('Home', {})
-    }
-  }
-
-  register = () => {
-    console.log('I AM CALLED')
-    this.setState({ registered: true  }, () => {
-      this.props.navigation.navigate('Settings', {})
-    })
-    // const res = this.props.navigation.navigate('Settings', {})
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -47,54 +25,54 @@ export default class Registration extends React.Component {
         <Text style={styles.blueText}>Please register below...</Text>
         <TextInput
           style={styles.textBox}
-          placeholder='Username'
+          placeholder="Username"
           autoCapitalize="none"
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
         />
         <TextInput
           style={styles.textBox}
-          placeholder='Password'
-          secureTextEntry={true}
+          placeholder="Password"
+          secureTextEntry
           autoCapitalize="none"
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
         />
         <TextInput
           style={styles.textBox}
-          placeholder='Email'
+          placeholder="Email"
           autoCapitalize="none"
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
         />
         <TextInput
           style={styles.textBox}
-          placeholder='Phone Number'
+          placeholder="Phone Number"
           autoCapitalize="none"
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
         />
         <Button
-          title='Sign Up'
-          onPress={this.register}
-          color='#41B6A3'
+          title="Sign Up"
+          onPress={() => this.props.navigation.navigate('Main')}
+          color="#41B6A3"
         />
-      <View>
-        <Text style={styles.white}></Text>
-      </View>
-          <Button
-            title='Sign in with Google'
-            onPress={this.register}
-            // onPress={login}
-            color='#18365B'
-          />
         <View>
-          <Text style={styles.white}></Text>
+          <Text style={styles.white} />
         </View>
-          <Button
-            title='Sign in with Facebook'
-            onPress={this.register}
+        <Button
+          title="Sign in with Google"
+          onPress={() => this.props.navigation.navigate('Main')}
             // onPress={login}
-            color='#41B6A3'
-          />
+          color="#18365B"
+        />
+        <View>
+          <Text style={styles.white} />
         </View>
-    )
+        <Button
+          title="Sign in with Facebook"
+          onPress={() => this.props.navigation.navigate('Main')}
+            // onPress={login}
+          color="#41B6A3"
+        />
+      </View>
+    );
   }
 }
 
@@ -104,7 +82,7 @@ Registration.navigationOptions = {
 
 function login() {
   WebBrowser.openBrowserAsync(
-    'https://www.google.com'
+    'https://www.google.com',
   );
 }
 
@@ -146,6 +124,6 @@ const styles = StyleSheet.create({
   },
   blueText: {
     color: '#18365B',
-    paddingLeft: 10
+    paddingLeft: 10,
   },
 });
