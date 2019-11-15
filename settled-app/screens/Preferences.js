@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput
+  TextInput,
+  CheckBox
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
@@ -19,39 +20,41 @@ export default class Preferences extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+          <Text></Text>
           <Text>Preferences - Tell us what you like! :-)</Text>
+          <Text></Text>
           <CheckBox
             title='Resturants'
-            checked={this.state.checked}
+            // checked={this.state.checked}
           />
           <CheckBox
             title='Coffee'
-            checked={this.state.checked}
+            // checked={this.state.checked}
           />
           <CheckBox
             title='Lunches'
-            checked={this.state.checked}
+            // checked={this.state.checked}
           />
           <CheckBox
             title='Gifts'
-            checked={this.state.checked}
+            // checked={this.state.checked}
           />
           <CheckBox
             title='Experiences'
-            checked={this.state.checked}
+            // checked={this.state.checked}
           />
           <Button
             title='Save'
             onPress={() => this.props.navigation.navigate('Settings', {})}
             // onPress={login}
-            color='#18365B'
+            color='#41B6A3'
           />
         </View>
     )
   }
 }
 
-MyCards.navigationOptions = {
+Preferences.navigationOptions = {
   header: null,
 };
 
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   contentContainer: {
     paddingTop: 30,
