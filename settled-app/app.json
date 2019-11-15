@@ -1,5 +1,8 @@
 {
   "expo": {
+    "android": {
+      "package": "com.settled.app"
+    },
     "name": "Settled",
     "slug": "settled-app",
     "privacy": "public",
