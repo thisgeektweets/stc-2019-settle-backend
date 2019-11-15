@@ -38,6 +38,12 @@ export default class Settings extends React.Component {
             // onPress={login}
             color='#41B6A3'a
           />
+          <Button
+            title='Preferences'
+            onPress={() => this.props.navigation.navigate('Preferences', {})}
+            // onPress={login}
+            color='#41B6A3'a
+          />
         </View>
     )
   }

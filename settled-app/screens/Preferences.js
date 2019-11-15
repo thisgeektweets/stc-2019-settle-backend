@@ -19,9 +19,29 @@ export default class Preferences extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text>Preferences</Text>
+          <Text>Preferences - Tell us what you like! :-)</Text>
+          <CheckBox
+            title='Resturants'
+            checked={this.state.checked}
+          />
+          <CheckBox
+            title='Coffee'
+            checked={this.state.checked}
+          />
+          <CheckBox
+            title='Lunches'
+            checked={this.state.checked}
+          />
+          <CheckBox
+            title='Gifts'
+            checked={this.state.checked}
+          />
+          <CheckBox
+            title='Experiences'
+            checked={this.state.checked}
+          />
           <Button
-            title='OK'
+            title='Save'
             onPress={() => this.props.navigation.navigate('Settings', {})}
             // onPress={login}
             color='#18365B'

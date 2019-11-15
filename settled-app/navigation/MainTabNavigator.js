@@ -13,6 +13,7 @@ import RedeemScreen from '../screens/RedeemScreen';
 import ModalScreen from '../screens/ModalScreen';
 import AddCard from '../screens/AddCard.js';
 import MyCards from '../screens/MyCards.js';
+import Preferences from '../screens/Preferences.js'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
