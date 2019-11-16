@@ -8,9 +8,12 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
 } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+
+import { Button } from 'react-native-elements';
 
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
@@ -61,7 +64,6 @@ export default class Registration extends React.Component {
           style={styles.welcomeImage}
           source={require('./img/pendent-logo.png')}
         />
-        <Text style={styles.blueText}>Please register below...</Text>
         <TextInput
           style={styles.textBox}
           placeholder="Username"
@@ -87,29 +89,26 @@ export default class Registration extends React.Component {
           autoCapitalize="none"
           placeholderTextColor="grey"
         />
+        <View>
+          <Text style={styles.white} />
+        </View>
+        <Button
+          title="Sign in"
+          onPress={() => this.props.navigation.navigate('Settings')}
+          buttonStyle={styles.greenButton}
+        />
+        <View>
+          <Text style={styles.white} />
+        </View>
         <Button
           title="Sign Up"
           onPress={() => this.props.navigation.navigate('Settings')}
-          color="#41B6A3"
+          buttonStyle={styles.blueButton}
         />
-        <View>
-          <Text style={styles.white} />
+        <View style={styles.centre}>
+          <Ionicons name="logo-facebook" size={40} color="#18365B" />
+          <Ionicons name="logo-google" size={40} color="#18365B" />
         </View>
-        <Button
-          title="Sign in with Google"
-          onPress={() => this.props.navigation.navigate('Settings')}
-            // onPress={login}
-          color="#18365B"
-        />
-        <View>
-          <Text style={styles.white} />
-        </View>
-        <Button
-          title="Sign in with Facebook"
-          onPress={() => this.props.navigation.navigate('Settings')}
-            // onPress={login}
-          color="#41B6A3"
-        />
       </View>
     );
   }
@@ -127,8 +126,17 @@ function login() {
 
 
 const styles = StyleSheet.create({
+  centre: {
+    justifyContent: 'center',
+  },
+  button: {
+    width: 300,
+    justifyContent: 'center',
+    backgroundColor: '#41B6A3',
+    color: "#ffffff"
+  },
   container: {
-    margin: 10,
+    margin: 20,
     flex: 1,
     backgroundColor: '#fff',
   },
@@ -136,30 +144,25 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   greenButton: {
-    color: '#41B6A3',
-    padding: 20,
+    paddingTop: 10,
+    justifyContent: 'center',
+    backgroundColor: '#41B6A3',
   },
   blueButton: {
-    color: '#18365B',
-    padding: 20,
+    paddingTop: 10,
+    justifyContent: 'center',
+    backgroundColor: '#18365B',
   },
   welcomeImage: {
     width: 200,
     height: 160,
     resizeMode: 'contain',
-    // marginTop: 3,
-    // marginLeft: 10,
     padding: 20,
     alignSelf: 'center',
   },
   textBox: {
-    padding: 20,
-    borderColor: '#a9a3a3',
-    // shadowColor: 'grey',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // borderBottomWidth: '1',
+    padding: 10,
+    borderColor: '#18365B',
   },
   blueText: {
     color: '#18365B',

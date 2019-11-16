@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import QRCode from 'react-qr-code';
 
-import { StyleSheet, View, TextInput, Button, Text, Image } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Image, SafeAreaView } from 'react-native';
+
+import { Button } from 'react-native-elements';
+
 import { Notifications } from 'expo';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const DEFAULT = "uniqueCodeXYZ"
 
@@ -31,32 +35,46 @@ export default class RedeemScreen extends React.Component {
   render() {
     let code = this.props.navigation.getParam('code', DEFAULT);
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Image
           style={{height: 200}}
           source={require('../assets/images/figbar.jpeg')}
         />
-        <View style={styles.content}>
+        <View>
+        <View style={styles.header}>
           <Text style={styles.title}>Figbar</Text>
-          <Text>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.  
-  It’s a place to eat, drink, and socialize after that relaxing sigh with the first bite of exactly
-  what you’ve been craving.  We aim to amplify your sweet tooth and bring dessert into focus.
+          <Text style={styles.expiry}>17/11/19 - 15:30 to 18:00</Text>
+          <View style={styles.dealFloat}>
+            <Text style={styles.dealPercent}>10%</Text>
+            <Text style={styles.deal}>off pastries</Text>
+          </View >
+          </View>
+          <View style={styles.content}>
+            <Text>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.  
+    It’s a place to eat, drink, and socialize after that relaxing sigh with the first bite of exactly
+    what you’ve been craving.  We aim to amplify your sweet tooth and bring dessert into focus.
 
-  Our menu is designed and created by Executive Pastry Chef Jaime Garbutt.</Text>
+    Our menu is designed and created by Executive Pastry Chef Jaime Garbutt.</Text>
+        </View>
         </View>
         {
           this.state.qrVis ?
-            <View>
+            <View style={styles.padding}>
               <QRCode value={code} />
               <Text>Received Code: {code}</Text>
             </View>
-          : <Button
-            backgroundColor='#41B6A3'
+          : 
+          <View style={styles.padding}>
+          <Button
+            buttonStyle={styles.button}
             title="Redeem Code"
             onPress={this.toggleQR}
           />
+          </View>
         }
       </View>
+      </ScrollView>
     );
   }
 }
@@ -66,7 +84,6 @@ const styles = StyleSheet.create({
       marginHorizontal: 20
     },
     container: {
-        flex: 1,
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
@@ -79,6 +96,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     button: {
+      width: 300,
+      justifyContent: 'center',
       backgroundColor: '#41B6A3',
       color: "#ffffff"
     },
@@ -86,4 +105,45 @@ const styles = StyleSheet.create({
       fontSize: 36,
       paddingVertical: 10,
     },
+    header: {
+      marginHorizontal: 20,
+      height: 100
+    },
+    dealFloat: {
+      backgroundColor: '#41B6A3',
+      position: 'absolute',
+      top: 10,
+      right: 10,
+      bottom: 10,
+      paddingTop: 5,
+      paddingBottom: 5,
+      fontSize: 24,
+      fontWeight: 'bold',
+      borderRadius: 10,
+      width: 120
+    },
+    dealPercent: {
+      paddingTop: 5,
+      color: '#ffffff',
+      fontSize: 40,
+      fontWeight: 'bold',
+      textAlign: "center",
+    },
+    deal: {
+      paddingBottom: 5,
+      color: '#ffffff',
+      fontSize: 14,
+      textAlign: "center",
+      marginHorizontal: 5,
+    },
+    expiry: {
+      paddingTop: 5,
+      paddingBottom: 10,
+      color: '#41B6A3',
+      fontSize: 12,
+    },
+    padding: {
+      paddingTop: 20,
+      paddingBottom: 20
+    }
 });
