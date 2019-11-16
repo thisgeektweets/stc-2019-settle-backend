@@ -4,7 +4,7 @@
       "package": "com.settled.app",
        "googleServicesFile": "./google-services.json"
     },
-    "name": "Settled",
+    "name": "Pendent",
     "slug": "settled-app",
     "privacy": "public",
     "sdkVersion": "35.0.0",
@@ -15,9 +15,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/pendent-logo-stacked-square.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/pendent-logo-stacked-square.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
