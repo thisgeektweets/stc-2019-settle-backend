@@ -17,7 +17,7 @@ import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import { MonoText } from '../components/StyledText';
 
-const API = 'https://polar-earth-61926.herokuapp.com/api';
+const API = 'https://polar-earth-61926.herokuapp.com/api/notifications';
 
 export default class Registration extends React.Component {
   async componentDidMount() {

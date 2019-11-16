@@ -8,7 +8,7 @@ import Constants from 'expo-constants';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-const API = 'https://polar-earth-61926.herokuapp.com/api'
+const API = 'https://polar-earth-61926.herokuapp.com/api/notifications'
 
 export default class PushScreen extends React.Component {
   constructor(props) {
