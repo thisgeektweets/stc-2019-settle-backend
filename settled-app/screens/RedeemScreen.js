@@ -51,7 +51,7 @@ export default class RedeemScreen extends React.Component {
           </View >
           </View>
           <View style={styles.content}>
-            <Text>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.  
+            <Text>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.
     It’s a place to eat, drink, and socialize after that relaxing sigh with the first bite of exactly
     what you’ve been craving.  We aim to amplify your sweet tooth and bring dessert into focus.
 
@@ -62,9 +62,9 @@ export default class RedeemScreen extends React.Component {
           this.state.qrVis ?
             <View style={styles.padding}>
               <QRCode value={code} />
-              <Text>Received Code: {code}</Text>
+              <Text style={styles.code}>{code}</Text>
             </View>
-          : 
+          :
           <View style={styles.padding}>
           <Button
             buttonStyle={styles.button}
@@ -82,6 +82,14 @@ export default class RedeemScreen extends React.Component {
 const styles = StyleSheet.create({
     content: {
       marginHorizontal: 20
+    },
+    code: {
+      fontSize: 25,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#18365B',
+      color: 'white',
+      padding: 10
     },
     container: {
         backgroundColor: 'white',
