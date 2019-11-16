@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
+
+
 import {
   SafeAreaView, View, FlatList, StyleSheet, Text, Image, TouchableOpacity,
 } from 'react-native';
@@ -13,7 +15,7 @@ import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 
 function Item({
-  business, image, dealPercent, deal, expiry, location, navigate, code,
+  business, image, dealPercent, deal, redeemed, expiry, location, navigate, code,
 }) {
   return (
     <TouchableOpacity onPress={() => navigate('QRCode', { code })}>
@@ -24,12 +26,12 @@ function Item({
           <Text style={styles.dealPercent}>{dealPercent}</Text>
           <Text style={styles.deal}>{deal}</Text>
         </View>
-        <Text style={styles.expiry}>
-          Expires:
-          {' '}
-          {expiry}
-        </Text>
-        <Text style={styles.location}>{location}</Text>
+        <Text style={styles.redeemed}>{redeemed} redeemed</Text>
+        <Text style={styles.expiry}>Expires: {expiry}</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Ionicons name="md-pin" size={15} color="#777777"/>
+          <Text style={styles.location}>  {location}</Text>
+        </View>
       </Card>
     </TouchableOpacity>
   );
@@ -41,6 +43,7 @@ const figbar = {
   business: 'Figbar',
   dealPercent: '10%',
   deal: 'off pastries',
+  redeemed: '22 out of 30',
   expiry: '17/11/19 - 15:30 to 18:00',
   location: 'Norwich',
 };
@@ -59,6 +62,7 @@ export default class HomeScreen extends React.Component {
           business: 'Strangers',
           dealPercent: '20%',
           deal: 'off any coffee',
+          redeemed: '26 out of 50',
           expiry: '18/11/19 - 11:00 to 14:00',
           location: 'Norwich',
         },
@@ -68,6 +72,7 @@ export default class HomeScreen extends React.Component {
           business: 'Pure Cafe',
           dealPercent: '5%',
           deal: 'off traybakes',
+          redeemed: '4 out of 15',
           expiry: '17/11/19 - 11:00 to 21:00',
           location: 'Norwich',
         },
@@ -104,7 +109,7 @@ export default class HomeScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <FlatList
           data={this.state.offers}
-          renderItem={({ item }) => <Item navigate={navigate} code={this.state.code} business={item.business} image={item.image} dealPercent={item.dealPercent} deal={item.deal} location={item.location} expiry={item.expiry} />}
+          renderItem={({ item }) => <Item navigate={navigate} code={this.state.code} business={item.business} image={item.image} dealPercent={item.dealPercent} deal={item.deal} location={item.location} redeemed={item.redeemed}  expiry={item.expiry} />}
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
@@ -156,7 +161,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   dealPercent: {
-    paddingTop: 5,
+    paddingTop: 15,
     color: '#ffffff',
     fontSize: 40,
     fontWeight: 'bold',
@@ -183,6 +188,12 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 10,
   },
+  redeemed: {
+    paddingTop: 5,
+    color: '#41B6A3',
+    fontSize: 14,
+    fontWeight: 'bold'
+  }
 });
 
 

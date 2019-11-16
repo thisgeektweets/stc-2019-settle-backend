@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     width: 300,
     justifyContent: 'center',
     backgroundColor: '#41B6A3',
-    color: "#ffffff"
   },
   container: {
     margin: 20,
