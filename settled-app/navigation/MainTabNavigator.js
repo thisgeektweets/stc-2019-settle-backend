@@ -59,7 +59,7 @@ const MyOffers = createStackNavigator(
 MyOffers.navigationOptions = {
   tabBarLabel: 'MyOffers',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-map' : 'ios-map'} />
+    <TabBarIcon focused={focused} name="tag-heart" />
   ),
 };
 
@@ -77,7 +77,7 @@ const SettingsStack = createStackNavigator(
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-settigns' : 'md-settings'} />
   ),
 };
 
