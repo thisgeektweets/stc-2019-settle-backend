@@ -34,7 +34,7 @@ const DATA = [
     image: require('../assets/images/cafepure.jpeg'),
     business: 'Pure Cafe',
     dealPercent: '5%',
-    deal: 'off your first order',
+    deal: 'off traybakes',
     expiry: '17/11/19 - 11:00 to 21:00',
     location: 'Norwich',
   },
@@ -101,11 +101,14 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     marginVertical: 8,
     marginHorizontal: 16,
+    bottom: 10,
   },
   dealFloat: {
     backgroundColor: '#41B6A3',
     position: 'absolute',
-    right: 0,
+    top: 10,
+    right: 10,
+    bottom: 10,
     paddingTop: 5,
     paddingBottom: 5,
     fontSize: 24,
@@ -121,20 +124,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   dealPercent: {
-    paddingTop: 20,
-    paddingBottom: 5,
-    color: '#18365B',
-    fontSize: 30,
+    paddingTop: 5,
+    color: '#ffffff',
+    fontSize: 40,
     fontWeight: 'bold',
     textAlign: "center",
   },
   deal: {
-    paddingTop: 10,
     paddingBottom: 5,
-    color: '#18365B',
+    color: '#ffffff',
     fontSize: 14,
     textAlign: "center",
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
   expiry: {
     paddingTop: 5,
@@ -146,6 +147,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     color: '#777777',
     fontSize: 12,
+  },
+  image: {
+    borderRadius: 10,
   },
 });
 

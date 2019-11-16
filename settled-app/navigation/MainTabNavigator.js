@@ -12,6 +12,7 @@ import BarCodeScannerScreen from '../screens/BarCodeScannerScreen';
 import RedeemScreen from '../screens/RedeemScreen';
 import ModalScreen from '../screens/ModalScreen';
 import AddCard from '../screens/AddCard.js';
+import PreferencesScreen from '../screens/Preferences.js';
 import MyCards from '../screens/MyCards.js';
 
 const config = Platform.select({
@@ -26,6 +27,7 @@ const HomeStack = createStackNavigator(
     Home: HomeScreen,
     QRCode: RedeemScreen,
     Scan: BarCodeScannerScreen,
+    Preferences: PreferencesScreen,
   },
   config,
 );
