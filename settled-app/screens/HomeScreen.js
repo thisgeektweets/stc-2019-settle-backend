@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 import {
-  SafeAreaView, View, FlatList, StyleSheet, Text, Image, TouchableOpacity,
+  SafeAreaView, View, FlatList, StyleSheet, Text, Image, TouchableOpacity, Platform
 } from 'react-native';
 
 import { Header, Card, Button } from 'react-native-elements';
@@ -29,7 +29,7 @@ function Item({
         <Text style={styles.redeemed}>{redeemed} redeemed</Text>
         <Text style={styles.expiry}>Expires: {expiry}</Text>
         <View style={{flexDirection: 'row'}}>
-          <Ionicons name="md-pin" size={15} color="#777777"/>
+          <Ionicons name={Platform.OS === 'ios' ? 'ios-pin' : 'md-pin'} size={15} color="#777777"/>
           <Text style={styles.location}>  {location}</Text>
         </View>
       </Card>
