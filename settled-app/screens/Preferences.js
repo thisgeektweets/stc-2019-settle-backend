@@ -9,40 +9,56 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput,
-  CheckBox
+  TextInput
 } from 'react-native';
+
+import {CheckBox} from 'react-native-elements';
 
 import { MonoText } from '../components/StyledText';
 
-
 export default class Preferences extends React.Component {
+  state = {
+    restaurants: false,
+    coffee: false,
+    lunches: false,
+    gifts: false,
+    experiences: false,
+  }
+
+  check = (name, value) => {
+    this.setState({[name]: value})
+  }
+
   render() {
     return (
       <View style={styles.container}>
           <Text></Text>
           <Text>Preferences - Tell us what you like! :-)</Text>
           <Text></Text>
+
           <CheckBox
             title='Resturants'
-            // checked={this.state.checked}
+            checked={this.state.restaurants}
+            onPress={() => this.check('restaurants', !this.state.restaurants)}          
           />
           <CheckBox
             title='Coffee'
-            // checked={this.state.checked}
+            checked={this.state.coffee}
+            onPress={() => this.check('coffee', !this.state.coffee)}          
           />
           <CheckBox
             title='Lunches'
-            // checked={this.state.checked}
-          />
+            checked={this.state.lunches}
+            onPress={() => this.check('lunches', !this.state.lunches)}             />
           <CheckBox
             title='Gifts'
-            // checked={this.state.checked}
+            checked={this.state.gifts}
+            onPress={() => this.check('gifts', !this.state.gifts)}   
           />
           <CheckBox
             title='Experiences'
-            // checked={this.state.checked}
-          />
+            checked={this.state.experiences}
+            onPress={() => this.check('experiences', !this.state.experiences)}             />
           <Button
             title='Save'
             onPress={() => this.props.navigation.navigate('Settings', {})}
