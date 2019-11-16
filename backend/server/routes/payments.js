@@ -8,6 +8,7 @@ router.use(express.json());
 
 const figbar = 'ExponentPushToken[j2A4CMB7f7Z6grJrokBKHB]';
 
+tickets = [];
 router.post('/transaction', async (req, res) => {
   console.log(JSON.stringify(req.body));
   const batch = [{
