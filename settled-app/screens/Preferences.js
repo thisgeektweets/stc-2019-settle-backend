@@ -8,9 +8,10 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   TextInput
 } from 'react-native';
+
+import { Button } from 'react-native-elements';
 
 import {CheckBox} from 'react-native-elements';
 
@@ -32,9 +33,11 @@ export default class Preferences extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text></Text>
-          <Text>Preferences - Tell us what you like! :-)</Text>
-          <Text></Text>
+
+          <View style={styles.header}>
+            <Text style={styles.title}>Preferences</Text>
+            <Text style={styles.subtitle}>Tell us what you like</Text>
+          </View>
 
           <CheckBox
             title='Resturants'
@@ -62,8 +65,7 @@ export default class Preferences extends React.Component {
           <Button
             title='Save'
             onPress={() => this.props.navigation.navigate('Settings', {})}
-            // onPress={login}
-            color='#41B6A3'
+            buttonStyle={styles.greenButton}
           />
         </View>
     )
@@ -82,6 +84,27 @@ function login() {
 
 
 const styles = StyleSheet.create({
+    header: {
+        marginTop: 30,
+        // paddingTop: 10,
+        padding: 20,
+        // paddingBottom: 10,
+    },
+    title: {
+        color: '#18365B',
+        fontSize: 20,
+        fontWeight: 'bold',
+      },
+    subtitle: {
+        color: '#18365B',
+        fontSize: 16,
+        paddingVertical: 10,
+    },
+    greenButton: {
+        marginTop: 20,
+        justifyContent: 'center',
+        backgroundColor: '#41B6A3',
+        },
   container: {
     margin: 10,
     flex: 1,
@@ -89,10 +112,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
-  },
-  greenButton: {
-    color: '#41B6A3',
-    padding: 20,
   },
   blueButton: {
     color: '#18365B',
@@ -102,8 +121,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 160,
     resizeMode: 'contain',
-    // marginTop: 3,
-    // marginLeft: 10,
     padding: 20,
     alignSelf: 'center',
   },

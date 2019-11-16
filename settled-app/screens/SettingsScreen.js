@@ -26,7 +26,7 @@ export default class Settings extends React.Component {
         />
         <Text></Text>
           <Button
-            title='Add a card'
+            title='Add Card'
             onPress={() => this.props.navigation.navigate('AddCard', {})}
             buttonStyle={styles.greenButton}
           />

@@ -27,7 +27,11 @@ export default class Card1 extends React.Component {
           style={styles.welcomeImage}
           source={require('./img/pendent-logo.png')}
         />
-        <Text style={styles.blueText}>Please enter your card details...</Text>
+
+        <View style={styles.header}>
+            <Text style={styles.title}>Add Card</Text>
+          </View>
+
         <TextInput
           style={styles.textBox}
           placeholder='Card Number'
@@ -75,6 +79,19 @@ function login() {
 
 
 const styles = StyleSheet.create({
+    header: {
+        padding: 20,
+    },
+    title: {
+        color: '#18365B',
+        fontSize: 20,
+        fontWeight: 'bold',
+      },
+    subtitle: {
+        color: '#18365B',
+        fontSize: 16,
+        paddingVertical: 10,
+    },
    greenButton: {
     paddingTop: 10,
     justifyContent: 'center',
@@ -104,11 +121,6 @@ const styles = StyleSheet.create({
   textBox: {
     padding: 20,
     borderColor: '#a9a3a3',
-    // shadowColor: 'grey',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // borderBottomWidth: '1',
   },
   blueText: {
     color: '#18365B',
