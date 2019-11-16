@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
   textBox: {
     padding: 20,
     borderColor: '#a9a3a3',
-    shadowColor: 'grey',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    // shadowColor: 'grey',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
     // borderBottomWidth: '1',
   },
   blueText: {
