@@ -44,25 +44,26 @@ export default class RedeemScreen extends React.Component {
         <View>
         <View style={styles.header}>
           <Text style={styles.title}>Figbar</Text>
-          <Text style={styles.expiry}>17/11/19 - 15:30 to 18:00</Text>
+          <Text style={styles.redeemed}>22 out of 30 redeemed</Text>
           <View style={styles.dealFloat}>
             <Text style={styles.dealPercent}>10%</Text>
             <Text style={styles.deal}>off pastries</Text>
           </View >
           </View>
           <View style={styles.content}>
-            <Text>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.  
+            <Text style={{color: '#777777'}}>Figbar is a modern meeting place, where pre-theatre pick-me-ups shine and first dates don’t have to end.  
     It’s a place to eat, drink, and socialize after that relaxing sigh with the first bite of exactly
     what you’ve been craving.  We aim to amplify your sweet tooth and bring dessert into focus.
 
     Our menu is designed and created by Executive Pastry Chef Jaime Garbutt.</Text>
         </View>
+        <Text style={styles.expiry}>Expires: 17/11/19 - 15:30 to 18:00</Text>
         </View>
         {
           this.state.qrVis ?
             <View style={styles.padding}>
               <QRCode value={code} />
-              <Text>Received Code: {code}</Text>
+              <Text style={{backgroundColor: '#18365B', color: '#ffffff', textAlign: 'center', fontSize: 14, padding: 8}}>Received Code: {code}</Text>
             </View>
           : 
           <View style={styles.padding}>
@@ -81,6 +82,8 @@ export default class RedeemScreen extends React.Component {
 
 const styles = StyleSheet.create({
     content: {
+      paddingTop: 10,
+      paddingBottom: 10,
       marginHorizontal: 20
     },
     container: {
@@ -137,13 +140,21 @@ const styles = StyleSheet.create({
       marginHorizontal: 5,
     },
     expiry: {
-      paddingTop: 5,
-      paddingBottom: 10,
+      paddingTop: 10,
+      paddingBottom: 5,
       color: '#41B6A3',
-      fontSize: 12,
+      fontSize: 14,
+      textAlign: 'center',
+      fontWeight: 'bold'
     },
     padding: {
       paddingTop: 20,
       paddingBottom: 20
+    },
+    redeemed: {
+      paddingTop: 5,
+      color: '#41B6A3',
+      fontSize: 16,
+      fontWeight: 'bold'
     }
 });
