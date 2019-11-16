@@ -20,13 +20,12 @@ export default class MyCards extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.white}></Text>
+        <View style={styles.padding}>
+          <Image
+            style={styles.welcomeImage}
+            source={require('./img/monzo.png')}
+          />
         </View>
-        <Image
-          style={styles.welcomeImage}
-          source={require('./img/monzo.png')}
-        />
         <Button
             title='Settings'
             onPress={() => this.props.navigation.navigate('Settings', {})}
@@ -67,23 +66,27 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   welcomeImage: {
-    width: 250,
-    height: 160,
+    width: 500,
+    height: 200,
     resizeMode: 'contain',
-    padding: 20,
+    padding: 30,
     alignSelf: 'center',
   },
   textBox: {
     padding: 20,
     borderColor: '#a9a3a3',
-    // shadowColor: 'grey',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
+    shadowColor: 'grey',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
     // borderBottomWidth: '1',
   },
   blueText: {
     color: '#18365B',
     padding: 20
   },
+  padding: {
+    paddingTop: 50,
+    paddingBottom: 20,
+  }
 });
