@@ -17,6 +17,8 @@ function Item({
 }) {
   return (
     <TouchableOpacity onPress={() => navigate('QRCode', { code })}>
+      <Text>  </Text>
+      <Text>  </Text>
       <Card image={image} style={styles.item} containerStyle={styles.item}>
         <Text style={styles.title}>{business}</Text>
         <View style={styles.dealFloat}>

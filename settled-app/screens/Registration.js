@@ -106,8 +106,12 @@ export default class Registration extends React.Component {
           buttonStyle={styles.blueButton}
         />
         <View style={styles.centre}>
-          <Ionicons name="logo-facebook" size={40} color="#18365B" />
-          <Ionicons name="logo-google" size={40} color="#18365B" />
+          <View style={styles.icon}>
+          <Ionicons name="logo-facebook" size={40} color="#18365B"/>
+          </View>
+          <View style={styles.icon}>
+          <Ionicons name="logo-google" size={40} color="#18365B"/>
+          </View>
         </View>
       </View>
     );
@@ -126,8 +130,14 @@ function login() {
 
 
 const styles = StyleSheet.create({
+  icon: {
+    paddingTop: 15,
+    padding: 10
+  },
   centre: {
     justifyContent: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
   },
   button: {
     width: 300,
@@ -163,6 +173,7 @@ const styles = StyleSheet.create({
   textBox: {
     padding: 10,
     borderColor: '#18365B',
+    fontSize: 16
   },
   blueText: {
     color: '#18365B',

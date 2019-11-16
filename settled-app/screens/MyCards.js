@@ -8,9 +8,10 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   TextInput
 } from 'react-native';
+
+import { Button } from 'react-native-elements';
 
 import { MonoText } from '../components/StyledText';
 
@@ -19,7 +20,6 @@ export default class MyCards extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.blueText}>Your Cards...</Text>
         <View>
           <Text style={styles.white}></Text>
         </View>
@@ -30,8 +30,7 @@ export default class MyCards extends React.Component {
         <Button
             title='Settings'
             onPress={() => this.props.navigation.navigate('Settings', {})}
-            // onPress={login}
-            color='#41B6A3'a
+            buttonStyle={styles.greenButton}
           />
       </View>
     )
@@ -50,6 +49,11 @@ function login() {
 
 
 const styles = StyleSheet.create({
+  greenButton: {
+    paddingTop: 10,
+    justifyContent: 'center',
+    backgroundColor: '#41B6A3',
+    },
   container: {
     margin: 10,
     flex: 1,
@@ -58,30 +62,24 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  greenButton: {
-    color: '#41B6A3',
-    padding: 20,
-  },
   blueButton: {
     color: '#18365B',
     padding: 20,
   },
   welcomeImage: {
-    width: 200,
+    width: 250,
     height: 160,
     resizeMode: 'contain',
-    // marginTop: 3,
-    // marginLeft: 10,
     padding: 20,
     alignSelf: 'center',
   },
   textBox: {
     padding: 20,
     borderColor: '#a9a3a3',
-    shadowColor: 'grey',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    // shadowColor: 'grey',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
     // borderBottomWidth: '1',
   },
   blueText: {
