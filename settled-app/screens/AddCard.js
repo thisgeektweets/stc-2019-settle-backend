@@ -9,9 +9,12 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   TextInput
 } from 'react-native';
+
+import {
+    Button
+} from 'react-native-elements';
 
 import { MonoText } from '../components/StyledText';
 
@@ -53,7 +56,7 @@ export default class Card1 extends React.Component {
         <Button
           title='Submit'
           onPress={() => this.props.navigation.navigate('Settings', {})}
-          color='#41B6A3'
+          buttonStyle={styles.greenButton}
         />
     </View>
     )
@@ -72,6 +75,11 @@ function login() {
 
 
 const styles = StyleSheet.create({
+   greenButton: {
+    paddingTop: 10,
+    justifyContent: 'center',
+    backgroundColor: '#41B6A3',
+    },
   container: {
     margin: 10,
     flex: 1,
@@ -79,10 +87,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
-  },
-  greenButton: {
-    color: '#41B6A3',
-    padding: 20,
   },
   blueButton: {
     color: '#18365B',
