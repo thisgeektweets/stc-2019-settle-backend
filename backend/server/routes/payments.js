@@ -12,8 +12,8 @@ router.post('/transaction', async (req, res) => {
   console.log(JSON.stringify(req.body));
   const batch = [{
     to: figbar,
-    title: `Todd Pitcher spent at location ${req.body.location.address}, ${req.body.location.city}`,
-    body: `Your customer just spent £${req.body.amount} using ${req.body.card.scheme}`,
+    title: 'Todd Pitcher participated in offer',
+    body: `Your customer just spent £${req.body.amount} using ${req.body.card.scheme}\nAt Location: ${req.body.location.address}, ${req.body.location.city}`,
     sound: 'default',
   }];
   const chunks = expo.chunkPushNotifications(batch);
