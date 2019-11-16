@@ -52,6 +52,6 @@ export default class BarCodeScannerScreen extends React.Component {
   handleBarCodeScanned = ({ type, data }) => {
     this.setState({ scanned: true });
     const { navigate } = this.props.navigation;
-    navigate('Home', { code: data, scanned: true })
+    navigate('Notification', { code: data, scanned: true })
   };
 }

@@ -18,21 +18,6 @@ export default class PushScreen extends React.Component {
     };
   }
 
-  async componentDidMount(){
-    // Handle notifications that are received or selected while the app
-    // is open. If the app was closed and then opened by tapping the
-    // notification (rather than just tapping the app icon to open it),
-    // this function will fire on the next tick after the app starts
-    // with the notification data.
-    this._notificationSubscription = Notifications.addListener(
-      this._handleNotification,
-    );
-  }
-
-  _handleNotification = (notification) => {
-    this.setState({ notification });
-  }
-
   // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
   sendPushNotification = async () => {
     const message = {
@@ -57,10 +42,6 @@ export default class PushScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const code = this.props.navigation.getParam('code', 'UNSET');
     const scanned = this.props.navigation.getParam('scanned', false);
-    if (this.state.notification.data) {
-      let foundCode = this.state.notification.data.code
-      navigate('Links', { code: foundCode })
-    }
     return (
       <View
         style={{

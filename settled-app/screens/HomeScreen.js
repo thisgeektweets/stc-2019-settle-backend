@@ -9,42 +9,14 @@ import {
 import { Header, Card, Button } from 'react-native-elements';
 
 import Constants from 'expo-constants';
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    image: require('../assets/images/figbar.jpeg'),
-    business: 'Figbar',
-    dealPercent: '10%',
-    deal: 'off pastries',
-    expiry: '17/11/19 - 15:30 to 18:00',
-    location: 'Norwich',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    image: require('../assets/images/strangers.jpg'),
-    business: 'Strangers',
-    dealPercent: '20%',
-    deal: 'off any coffee',
-    expiry: '18/11/19 - 11:00 to 14:00',
-    location: 'Norwich',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    image: require('../assets/images/cafepure.jpeg'),
-    business: 'Pure Cafe',
-    dealPercent: '5%',
-    deal: 'off traybakes',
-    expiry: '17/11/19 - 11:00 to 21:00',
-    location: 'Norwich',
-  },
-];
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
 
 function Item({
-  business, image, dealPercent, deal, expiry, location, navigate,
+  business, image, dealPercent, deal, expiry, location, navigate, code,
 }) {
   return (
-    <TouchableOpacity onPress={() => navigate('QRCode', {})}>
+    <TouchableOpacity onPress={() => navigate('QRCode', { code })}>
       <Card image={image} style={styles.item} containerStyle={styles.item}>
         <Text style={styles.title}>{business}</Text>
         <View style={styles.dealFloat}>
@@ -52,7 +24,9 @@ function Item({
           <Text style={styles.deal}>{deal}</Text>
         </View>
         <Text style={styles.expiry}>
-          Expires: {expiry}
+          Expires:
+          {' '}
+          {expiry}
         </Text>
         <Text style={styles.location}>{location}</Text>
       </Card>
@@ -60,19 +34,76 @@ function Item({
   );
 }
 
+const figbar = {
+  id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  image: require('../assets/images/figbar.jpeg'),
+  business: 'Figbar',
+  dealPercent: '10%',
+  deal: 'off pastries',
+  expiry: '17/11/19 - 15:30 to 18:00',
+  location: 'Norwich',
+};
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      code: 'uniqueCodeXYZ1',
+      found: false,
+      notification: {},
+      offers: [
+        {
+          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+          image: require('../assets/images/strangers.jpg'),
+          business: 'Strangers',
+          dealPercent: '20%',
+          deal: 'off any coffee',
+          expiry: '18/11/19 - 11:00 to 14:00',
+          location: 'Norwich',
+        },
+        {
+          id: '58694a0f-3da1-471f-bd96-145571e29d72',
+          image: require('../assets/images/cafepure.jpeg'),
+          business: 'Pure Cafe',
+          dealPercent: '5%',
+          deal: 'off traybakes',
+          expiry: '17/11/19 - 11:00 to 21:00',
+          location: 'Norwich',
+        },
+      ],
+    };
+  }
+
+  async componentDidMount() {
+    // Handle notifications that are received or selected while the app
+    // is open. If the app was closed and then opened by tapping the
+    // notification (rather than just tapping the app icon to open it),
+    // this function will fire on the next tick after the app starts
+    // with the notification data.
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification,
+    );
+  }
+
+  _handleNotification = (notification) =>{
+    this.setState({ notification });
   }
 
   render() {
     const { navigate } = this.props.navigation;
+    if (this.state.found === false && this.state.notification.data) {
+      const foundCode = this.state.notification.data.code;
+      this.setState({
+        offers: [figbar, ...this.state.offers],
+        code: foundCode,
+        found: true
+      });
+    }
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
-          renderItem={({ item }) => <Item navigate={navigate} business={item.business} image={item.image} dealPercent={item.dealPercent} deal={item.deal} location={item.location} expiry={item.expiry} />}
+          data={this.state.offers}
+          renderItem={({ item }) => <Item navigate={navigate} code={this.state.code} business={item.business} image={item.image} dealPercent={item.dealPercent} deal={item.deal} location={item.location} expiry={item.expiry} />}
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
@@ -114,7 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     borderRadius: 10,
-    width: 120
+    width: 120,
   },
   title: {
     paddingTop: 5,
@@ -128,13 +159,13 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 40,
     fontWeight: 'bold',
-    textAlign: "center",
+    textAlign: 'center',
   },
   deal: {
     paddingBottom: 5,
     color: '#ffffff',
     fontSize: 14,
-    textAlign: "center",
+    textAlign: 'center',
     marginHorizontal: 5,
   },
   expiry: {
